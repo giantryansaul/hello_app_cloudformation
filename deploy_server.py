@@ -1,9 +1,16 @@
+import argparse
 from datetime import datetime
 
 import boto3
 from jinja2 import Template
 
-session = boto3.Session(profile_name='grs')
+parser = argparse.ArgumentParser(description='Deploy Hello App')
+parser.add_argument('--aws', type=str, default='default',
+                    help='AWS Profile')
+cl_args = parser.parse_args()
+aws_profile = cl_args.aws
+
+session = boto3.Session(profile_name=aws_profile)
 client = session.client('cloudformation')
 
 
