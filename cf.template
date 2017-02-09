@@ -33,6 +33,7 @@
         },
       "Properties": {
             "ImageId" : "ami-fe5efb9e",
+            "KeyName" : {{keyname}},
             "InstanceType"   : "t2.micro",
             "SecurityGroups" : [ {"Ref" : "HelloAppSecurityGroup"} ],
             "UserData"       : { "Fn::Base64" : { "Fn::Join" : ["", {{userdata}}]}}

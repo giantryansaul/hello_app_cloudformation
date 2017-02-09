@@ -7,6 +7,10 @@ from jinja2 import Template
 parser = argparse.ArgumentParser(description='Deploy Hello App')
 parser.add_argument('--aws', type=str, default='default',
                     help='AWS Profile')
+parser.add_argument('--keyname', type=str, default='default',
+                    help='Keyname to use to connect to server')
+parser.add_argument('--chef', type=str, default='none',
+                    help='Chef host URL')
 cl_args = parser.parse_args()
 aws_profile = cl_args.aws
 
@@ -28,7 +32,11 @@ def create_cloudformation_template():
     cloudformation_template = Template(open('cf.template').read())
     return cloudformation_template.render(
             hello_app=format_cf_join(hello_app),
-            userdata=format_cf_join(userdata_template.render())
+            userdata=format_cf_join(userdata_template.render(
+                chef_url=cl_args.chef,
+                hello_app=hello_app
+            )),
+            keyname=cl_args.keyname
     )
 
 

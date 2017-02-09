@@ -1,5 +1,25 @@
 #!/bin/bash
 
+# Chef deployment
+mkdir /etc/chef
+curl -L https://www.getchef.com/chef/install.sh | sudo bash
+cat > /etc/chef/client.rb << EOF
+log_level        :info
+log_location     STDOUT
+chef_server_url  '{{chef_url}}'
+EOF
+
+chef-client
+
+# Hello app deployment
+#yum install python-pip -y
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+python get-pip.py
+
 pip install flask
 
-python hello_app.py
+cat > /var/local/hello_app.py << EOF
+{{hello_app}}
+EOF
+
+python /var/local/hello_app.py
