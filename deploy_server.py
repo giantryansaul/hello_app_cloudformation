@@ -4,7 +4,7 @@ import boto3
 from jinja2 import Template
 
 session = boto3.Session(profile_name='grs')
-client = boto3.client('cloudformation')
+client = session.client('cloudformation')
 
 
 def format_cf_join(multiline):
