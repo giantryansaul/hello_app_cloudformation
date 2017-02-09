@@ -11,7 +11,7 @@ parser.add_argument('--aws', type=str, default='default',
 parser.add_argument('--keyname', type=str, default='default',
                     help='Keyname to use to connect to server')
 parser.add_argument('--chef', type=str, default='none',
-                    help='Chef host URL')
+        help='Chef host URL. Ex: https://api.chef.io/organizations/<orgname>')
 cl_args = parser.parse_args()
 aws_profile = cl_args.aws
 

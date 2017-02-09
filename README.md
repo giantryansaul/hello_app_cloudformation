@@ -21,7 +21,8 @@ To install dependencies:
     - AWS keypair name to login to server with
     - Default: default
 - `--chef`
-    - Chef server URL
+    - Chef server URL.
+    - Example: `https://api.chef.io/organizations/<orgname>`
     - Default: none
 
 ## Usage
