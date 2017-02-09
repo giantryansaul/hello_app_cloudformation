@@ -2,12 +2,14 @@
 
 # Chef deployment
 mkdir /etc/chef
-curl -L https://www.getchef.com/chef/install.sh | sudo bash
+
 cat > /etc/chef/client.rb << EOF
 log_level        :info
 log_location     STDOUT
 chef_server_url  '{{chef_url}}'
 EOF
+
+curl -L https://www.getchef.com/chef/install.sh | bash
 
 chef-client
 

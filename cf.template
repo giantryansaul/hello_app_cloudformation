@@ -5,32 +5,7 @@
 
     "HelloApp": {
       "Type": "AWS::EC2::Instance",
-      "Metadata" : {
-        "Comment1" : "Configure the bootstrap helpers to install the Apache Web Server and PHP",
-        "Comment2" : "Save website content to /var/www/html/index.php",
 
-        "AWS::CloudFormation::Init" : {
-          "configSets" : {
-            "Install" : [ "Install" ]
-          },
-          "Install" : {
-            "packages" : {
-              "yum" : {
-                "python-pip"   : []
-              }
-            },
-
-            "files" : {
-              "/var/local/hello_app.py" : {
-                "content" : { "Fn::Join" : [ "", {{hello_app}}]},
-                "mode"  : "000755",
-                "owner" : "500",
-                "group" : "500"
-                  }
-                }
-              }
-            }
-        },
       "Properties": {
             "ImageId" : "ami-fe5efb9e",
             "KeyName" : {{keyname}},
