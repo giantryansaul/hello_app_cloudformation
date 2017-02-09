@@ -30,5 +30,7 @@ Navigate to the IP Address created in AWS CloudFormation:
 
 The app will display "Hello World"
 
+![Final result](https://i.imgur.com/5o13NLl.png)
+
 ## Troubleshooting
 - Login as the `centos` user when trying to SSH.
