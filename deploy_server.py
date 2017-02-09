@@ -2,6 +2,7 @@ import argparse
 from datetime import datetime
 
 import boto3
+from botocore.exceptions import ClientError
 from jinja2 import Template
 
 parser = argparse.ArgumentParser(description='Deploy Hello App')
@@ -40,10 +41,14 @@ def create_cloudformation_template():
 
 
 def main():
-    client.create_stack(
-        StackName='hello-app-{}'.format(datetime.today().strftime("%Y%m%d%H%M%S")),
-        TemplateBody=create_cloudformation_template()
-    )
+    try:
+        output = client.create_stack(
+            StackName='hello-app-{}'.format(datetime.today().strftime("%Y%m%d%H%M%S")),
+            TemplateBody=create_cloudformation_template()
+        )
+        print('Success! {}'.format(output))
+    except ClientError as e:
+        print('ERROR: {}'.format(e))
 
 
 if __name__ == '__main__':

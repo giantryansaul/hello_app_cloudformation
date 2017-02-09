@@ -29,7 +29,7 @@
   "Outputs" : {
     "WebsiteURL" : {
       "Description" : "URL for hello_app",
-      "Value" : { "Fn::Join" : ["", ["http://", { "Fn::GetAtt" : [ "HelloApp", "PublicDnsName" ]}, "/hello"]] }
+      "Value" : { "Fn::Join" : ["", ["http://", { "Fn::GetAtt" : [ "HelloApp", "PublicIp" ]}, "/hello"]] }
     }
   }
 }
